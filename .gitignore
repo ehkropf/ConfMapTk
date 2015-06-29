@@ -1,0 +1,10 @@
+# VIM swap files
+*.swp
+# "publish" output
+**/html/
+# latex files
+*.aux
+*.log
+*.out
+*.pdf
+*.toc
