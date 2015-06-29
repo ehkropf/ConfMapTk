@@ -6,8 +6,8 @@ Conformal Mapping Toolkit for MATLAB
 Curated by Everett Kropf, with contributions from others.
 
 ### History
-This repository is a separated fork of tobydriscoll/conformalmapping as 
-of 18 June, 2015. Significant portions of the initial code in this
+This repository is a separated fork of [tobydriscoll/conformalmapping](https://github.com/tobydriscoll/conformalmapping)
+as of 18 June, 2015. Significant portions of the initial code in this
 repository, along with early design ideas for the toolkit, were
 contributed by Toby Driscoll.
 
