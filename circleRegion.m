@@ -68,18 +68,26 @@ methods
                 clist = clist{1};
             end
             
-            if ~isempty(clist) 
-                if any(cellfun(@(x) ~isa(x, 'circle'), clist))
+            if ~isempty(clist)
+                if numel(clist) == 2 && numel(clist{1}) == numel(clist{2})
+                    cv = clist{1};
+                    rv = clist{2};
+                    m = numel(cv);
+                    clist = cell(m, 1);
+                    for j = 1:m
+                        clist{j} = circle(cv(j), rv(j));
+                    end
+                elseif all(cellfun(@(x) isa(x, 'circle'), clist))
+                    m = numel(clist);
+                    cv(m,1) = 1i;
+                    rv(m,1) = 0;
+                    for j = 1:m
+                        cv(j) = clist{j}.center;
+                        rv(j) = clist{j}.radius;
+                    end
+                else
                     error('CMT:InvalidArgument', ...
                         'Expected one or more circles.')
-                end
-            
-                m = numel(clist);
-                cv(m,1) = 1i;
-                rv(m,1) = 0;
-                for j = 1:m
-                    cv(j) = clist{j}.center;
-                    rv(j) = clist{j}.radius;
                 end
                 
                 if numel(varargin) == 0 || ~strcmp(varargin{1}, 'noCheck')
