@@ -69,21 +69,21 @@ methods
             end
             
             if ~isempty(clist)
-                if numel(clist) == 2 && numel(clist{1}) == numel(clist{2})
-                    cv = clist{1};
-                    rv = clist{2};
-                    m = numel(cv);
-                    clist = cell(m, 1);
-                    for j = 1:m
-                        clist{j} = circle(cv(j), rv(j));
-                    end
-                elseif all(cellfun(@(x) isa(x, 'circle'), clist))
+                if all(cellfun(@(x) isa(x, 'circle'), clist))
                     m = numel(clist);
                     cv(m,1) = 1i;
                     rv(m,1) = 0;
                     for j = 1:m
                         cv(j) = clist{j}.center;
                         rv(j) = clist{j}.radius;
+                    end
+                elseif numel(clist) == 2 && numel(clist{1}) == numel(clist{2})
+                    cv = clist{1};
+                    rv = clist{2};
+                    m = numel(cv);
+                    clist = cell(m, 1);
+                    for j = 1:m
+                        clist{j} = circle(cv(j), rv(j));
                     end
                 else
                     error('CMT:InvalidArgument', ...
